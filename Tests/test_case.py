@@ -13,7 +13,7 @@ def test_case(driver):
         home_page.open_url(config.url)
         home_page.search_object(config.search_data)
         time.sleep(3)
-        result_page.select_brand_and_price()
+        result_page.select_brand_and_price(config.brand_name, config.price)
         time.sleep(2)
         results = result_page.get_result()
         assert len(results) > 0, "No results found for that brand and price."
@@ -37,3 +37,9 @@ def test_case(driver):
         logging.error(f"Test failed: {e}")
     finally:
         logging.info("Test completed")
+
+# Good start! The test case is working as expected. The are still some improvements that can be made.
+# TODO 
+# 1.Try to remove the time.sleep() calls and use WebDriverWait instead
+# 2. I made changes in result_page.py to accept brand_name and price as arguments in select_brand_and_price() method
+# To be able to use variables in the xpaths, I moved the xpaths under the select_brand_and_price() method
